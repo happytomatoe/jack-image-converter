@@ -15,11 +15,12 @@ jobs:
         
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
           workingDirectory: ./web
 
       - name: Build project
-        run: npm run build
+        run: |
+          - ls node_modules/
+          - npm run build
         working-directory: ./web
 
       - name: Upload production-ready build files
