@@ -1,0 +1,16 @@
+[requires]
+lodepng/cci.20230410
+#cli11/2.4.2
+#dacap-clip/1.9
+#cpptrace/0.6.3
+#gtest/1.15.0
+#re2/20240702
+#ctre/3.9.0
+
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout
