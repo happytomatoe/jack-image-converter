@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-permissions: 
-  id-token: write 
-  contents: read
 defaults:
   run:
     working-directory: web
@@ -14,10 +11,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest    
-    permissions: 
-      id-token: write 
-      contents: read
-      pages: write 
+    permissions:     
+      contents: write
     steps:
         - name: Checkout
           uses: actions/checkout@v4
