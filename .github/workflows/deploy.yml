@@ -22,22 +22,19 @@ jobs:
             version: 9
             run_install: false
   
-        - name: Install Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-            cache: 'pnpm'
   
         - name: Install dependencies
           run: pnpm install
+          working-directory: ./web
         - name: Build project
           run: npm run build
+          working-directory: ./web
 
         - name: Upload production-ready build files
           uses: actions/upload-artifact@v3
           with:
             name: production-files
-            path: ./dist
+            path: ./web/dist
 
   deploy:
     name: Deploy
