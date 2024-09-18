@@ -1,5 +1,4 @@
 import ImageConverter from './image.converter';
-import './style.css'
 import { decode } from 'upng-js'
 export function setupCounter(element: HTMLButtonElement, jackTextArea: HTMLButtonElement, binaryImageTextArea: HTMLButtonElement) {
   const onChange = async (e: Event) => {
