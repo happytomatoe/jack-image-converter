@@ -16,7 +16,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: .name: Deploy GitHub Pages
+          folder: Deploy GitHub Pages
           
           on:
             push:
