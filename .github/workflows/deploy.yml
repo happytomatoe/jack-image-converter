@@ -13,11 +13,10 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         
-      - name: Setup Node
-        uses: actions/setup-node@v3
-
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          workingDirectory: ./web
 
       - name: Build project
         run: npm run build
