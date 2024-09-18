@@ -12,19 +12,17 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        working-directory: ./web
         
       - name: Setup Node
         uses: actions/setup-node@v3
-        working-directory: ./web
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
-        working-directory: ./web
 
       - name: Build project
         run: npm run build
         working-directory: ./web
+
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
