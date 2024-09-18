@@ -18,7 +18,7 @@ jobs:
         
       - uses: pnpm/action-setup@v4
         with:
-          workingDirectory: ./web
+          working-directory: ./web
           version: 9.x
       - name: Build project
         run: |
