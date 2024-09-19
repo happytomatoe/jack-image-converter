@@ -30,8 +30,11 @@
 *.exe
 *.out
 *.app
+
+
 build
-!web/build/*
 .idea
 cmake-build-debug
 web/node-modules
+
+!web/build/*
