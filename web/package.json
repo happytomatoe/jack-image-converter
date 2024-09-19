@@ -7,10 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "tsc && vite build && copyfiles -u 1 -E dist/**/* ../docs/"
+    "deploy": "tsc && vite build && rimraf ../docs/  && copyfiles -u 1 -E dist/**/* dist/** ../docs/"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.10",
     "workbox-window": "^7.1.0"
