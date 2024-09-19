@@ -5,46 +5,95 @@
   <meta charset="utf-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
   <title>Jack image converter</title>
-  <script type="module" crossorigin src="assets/index-DiQC1Fzc.js"></script>
+  <script type="module" crossorigin src="/assets/index-Dnnr5TX8.js"></script>
 </head>
 
 <body>
-<!doctype html>
-<html lang="en">
+  <!doctype html>
+  <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <title>Jack image converter</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Jack image converter</title>
+  </head>
 
-<body>
+  <body>
 
-  <div class="flex flex-wrap">
+    <div class="flex flex-wrap mb-4">
+      <div class="w-full">
 
-    <div class="w-full md:w-1/3 p-4">
-      <label for="input" class="block text-gray-700 text-sm font-bold mb-2">Please select black and white PNG</label>
-      <input id="input" type="file" accept=".png" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+       <h3
+          class="text-3xl font-bold dark:text-white flex items-center justify-center ">
+          Convert PNG to Jack code</h3>
+      </div>
+
+      <div class="w-full md:w-1/3 p-4 sm:flex-col sm:flex-row sm:flex-wrap sm:flex-shrink-0 sm:w-full">
+
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1">
+              <label for="input" class="block text-gray-700 text-sm font-bold mb-2">Please select black and white
+                PNG</label>
+            </div>
+            <div class="col-span-1 flex items-center">
+              <input id="input" type="file" accept=".png"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="col-span-1">
+              <label for="export_size" class="block text-gray-700 text-sm font-bold mb-2">Export image size</label>
+            </div>
+            <div class="col-span-1 flex items-center">
+              <input type="checkbox" id="export_size" name="export_size" />
+            </div>
+            <div class="col-span-1">
+              <label for="disable_grouping" class="block text-gray-700 text-sm font-bold mb-2">Group pixels into lines
+                and rectangles</label>
+            </div>
+            <div class="col-span-1 flex items-center">
+              <input type="checkbox" id="disable_grouping" name="disable_grouping" checked />
+            </div>
+          </div>
+          <div id="error-output" class="text-red-500 text-sm mt-1 hidden"></div>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/3 p-4 sm:flex-col sm:flex-row sm:flex-wrap sm:flex-shrink-0 sm:w-full relative">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+          <label for="output" class="block text-gray-700 text-sm font-bold mb-2">Jack code:</label>
+          <div class="relative">
+            <textarea id="output" name="output" rows="20" cols="50"
+              class="font-serif  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+
+          </div>
+          <button class="absolute top-0 right-0 px-10 py-8 text-gray-500 hover:text-gray-700 focus:outline-none"
+            id="copy_button">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <script>
+      </script>
+      <div class="w-full md:w-1/3 p-4 sm:flex-col sm:flex-row sm:flex-wrap sm:flex-shrink-0 sm:w-full">
+
+        <label for="binary_img" class="block text-gray-700 text-sm font-bold mb-2">Binary image:</label>
+        <textarea id="binary_img" name="binary_img" rows="20" cols="50"
+          class=" font-serif shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+      </div>
+
     </div>
 
-    <div class="w-full md:w-1/3 p-4">
-      <label for="output" class="block text-gray-700 text-sm font-bold mb-2">Jack code:</label>
-      <textarea id="output" name="output" rows="20" cols="50" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
     </div>
 
-    <div class="w-full md:w-1/3 p-4">
-      <label for="binary_img" class="block text-gray-700 text-sm font-bold mb-2">Binary image:</label>
-      <textarea id="binary_img" name="binary_img" rows="20" cols="50" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-    </div>
+  </body>
 
-  </div>
-
-</body>
-
-</html>
+  </html>
 </body>
 
 </html>
