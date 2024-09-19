@@ -5,14 +5,22 @@ export interface Result {
     jackCode: string;
 }
 class ImageConverter {
-    static convert(image: Uint8Array, w: number, h: number, exportSize: boolean, disableGrouping: boolean,): Result {
+
+
+    static convert(image: Uint8Array, w: number, h: number, exportSize: boolean, groupPixels: boolean,): Result {
+
+        const screenW = 512;
+        const screenH = 256;
+        if (w > screenW || h > screenH) {
+            throw new Error(`Image dimensions exceed screen dimensions. Screen dimensions: ${screenW}x${screenH}. Image dimensions: ${w}x${h}`);
+        }
         const img = this.convertToBinaryImage(image, w, h);
         const binaryImage = StringUtils.toString(img)
-        const jackCode = this.convertToJackCode(img, exportSize, disableGrouping)
+        const jackCode = this.convertToJackCode(img, exportSize, groupPixels)
         return { binaryImage, jackCode };
     }
 
-    static convertToJackCode(img: boolean[][], exportSize: boolean, disableGrouping: boolean): string {
+    static convertToJackCode(img: boolean[][], exportSize: boolean, groupPixels: boolean): string {
         let header = '';
         if (exportSize) {
             header = `
@@ -21,23 +29,24 @@ class ImageConverter {
                 |let imageH = ${img.length};
             `;
         }
-        header += `method void draw(int x, int y) {
+        header += `|method void draw(int x, int y) {
         `;
         let res = header;
-        if (disableGrouping) {
+        if (groupPixels) {
+            for (const r of this.findShapes(img)) {
+                res += r.convertToJackCode();
+            }
+        } else {
+
             for (let i = 0; i < img.length; i++) {
                 const row = img[i];
                 for (let j = 0; j < row.length; j++) {
                     if (!row[j]) {
                         const jStr = j > 0 ? `+${j}` : '';
                         const iStr = i > 0 ? `+${i}` : '';
-                        res += `|       do Screen.drawPixel(x${jStr},y${iStr});\n`;
+                        res += `|   do Screen.drawPixel(x${jStr},y${iStr});\n`;
                     }
                 }
-            }
-        } else {
-            for (const r of this.findRectangles(img)) {
-                res += r.convertToJackCode();
             }
         }
         const footer = `|    return;
@@ -60,7 +69,7 @@ class ImageConverter {
         return res;
     }
 
-    static findRectangles(image: boolean[][]): Rectangle[] {
+    static findShapes(image: boolean[][]): Rectangle[] {
         const rows = image.length;
         const cols = image[0].length;
         const visited: boolean[][] = Array(rows).fill(null).map(() => Array(cols).fill(false));
