@@ -1,4 +1,4 @@
-This repository is created for Jack language - toy Java language for [Nand2tetris course](https://www.coursera.org/learn/build-a-computer)
+This repository is created for Jack language - toy Java language in [Nand2tetris course](https://www.coursera.org/learn/build-a-computer)
 
 # Convert a black and white PNG image into Jack code
 
